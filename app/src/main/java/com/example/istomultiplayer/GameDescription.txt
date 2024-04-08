@@ -1,0 +1,13 @@
+Color : Yellow (player_name)ph1(GridView name) : a1_h1_p1, a2_h1_p2, a3_h1_p3, a4_h1_p4
+Color : Green (player_name)ph2(GridView name) : a1_h2_p1, a2_h2_p2, a3_h2_p3, a4_h2_p4
+Color : Blue (player_name)ph3(GridView name) : a1_h3_p1, a2_h3_p2, a3_h3_p3, a4_h3_p4
+Color : Red (player_name)ph4(GridView name) : a1_h4_p1, a2_h4_p2, a3_h4_p3, a4_h4_p4
+
+
+Task :
+1. Store 12 images into individual GridView
+   GridView size : width:72dp, height:65dp
+   imageView size : width:20dp, height:33dp
+2. Know the every GridViews name for move the paws till last 24(Find the GridView name and set the image into it using set adapter. Find the GridView names using drawing each house in notebook) and try and run the code generate by chatGPT).
+3. Find images names that store into individual GridView.
+4.

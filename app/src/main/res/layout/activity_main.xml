@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+    <!--Main horizontal linear layout code start here -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="364dp"
+        android:layout_height="326dp"
+        android:layout_marginBottom="150dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView27">
+        <!--Main grid layout code start here-->
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="361dp"
+            android:layout_height="match_parent">
+            <!--First row 1 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout10"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="0"
+                app:layout_row="0">
+
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--First row 1 grid  code end here -->
+            <!--First row 2 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout9"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="1"
+                app:layout_row="0">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--First row 2 grid  code end here -->
+            <!--First row 3 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout8"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="#3A90D5"
+                app:layout_column="2"
+                app:layout_row="0">
+
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--First row 3 grid  code end here -->
+            <!--First row 4 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout7"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="3"
+                app:layout_row="0">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--First row 4 grid  code end  here -->
+            <!--First row 5 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout6"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="4"
+                app:layout_row="0">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--First row 5 grid  code end here -->
+            <!--Second row 1 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout11"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="0"
+                app:layout_row="1">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--second row 1 grid  code end here -->
+            <!--Second row 2 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout18"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="1"
+                app:layout_row="1">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--second row 2 grid  code end here -->
+            <!--Second row 3 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout19"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="2"
+                app:layout_row="1">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--second row 3 grid  code end here -->
+            <!--Second row 4 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout20"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="3"
+                app:layout_row="1">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--second row 4 grid  code end here -->
+            <!--Second row 5 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout5"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="4"
+                app:layout_row="1">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--second row 5 grid  code end here -->
+            <!--Thrid row 1 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout12"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="#E4635A"
+                app:layout_column="0"
+                app:layout_row="2">
+
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Third row 1 grid  code end here -->
+            <!--Thrid row 2 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout17"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="1"
+                app:layout_row="2">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Third row 2 grid  code end here -->
+            <!--Thrid row 3 grid  code start here -->
+            <!--Third row 3 grid  code end here -->
+            <!--Thrid row 4 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout24"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="#8BC34A"
+                app:layout_column="2"
+                app:layout_row="2">
+
+            </androidx.gridlayout.widget.GridLayout>
+
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout21"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="3"
+                app:layout_row="2">
+
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Third row 4 grid  code end here -->
+            <!--Thrid row 5 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout4"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="#4CAF50"
+                app:layout_column="4"
+                app:layout_row="2">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Third row 5 grid  code end here -->
+            <!--Fourth row 1 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout13"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="0"
+                app:layout_row="3">
+
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Fourth row 1 grid  code end here -->
+            <!--Fourth row 2 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout16"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="1"
+                app:layout_row="3">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Fourth row 2 grid  code end here -->
+            <!--Fourth row 3 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout23"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="2"
+                app:layout_row="3">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Fourth row 3 grid  code end here -->
+            <!--Fourth row 4 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout22"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="3"
+                app:layout_row="3">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Fourth row 4 grid  code end here -->
+            <!--Fourth row 5 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout3"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="4"
+                app:layout_row="3">
+
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Fourth row 5 grid  code end here -->
+            <!--Fifth row 1 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout14"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="0"
+                app:layout_row="4">
+
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Fifth row 1 grid  code end here -->
+            <!--Fifth row 2 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout15"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="1"
+                app:layout_row="4">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Fifth row 2 grid  code end here -->
+            <!--Fifth row 3 grid  code start here -->
+            <GridView
+                android:id="@+id/gridView0"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="#D2C230"
+                android:columnWidth="20dp"
+                android:gravity="center"
+                android:horizontalSpacing="1dp"
+                android:numColumns="4"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="1dp" />
+
+            <!--Fifth row 3 grid  code end here -->
+            <!--Fifth row 4 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout1"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="3"
+                app:layout_row="4">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Fifth row 4 grid  code end here -->
+            <!--Fifth row 5 grid  code start here -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout2"
+                android:layout_width="72dp"
+                android:layout_height="65dp"
+                android:background="@drawable/grid_layout_border"
+                app:layout_column="4"
+                app:layout_row="4">
+
+            </androidx.gridlayout.widget.GridLayout>
+            <!--Fifth row 5 grid  code end here -->
+        </androidx.gridlayout.widget.GridLayout>
+        <!--Main grid layout code start here-->
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="365dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/black"
+        android:text="ISHTO Multiplayer Game"
+        android:textAlignment="center"
+        android:textColor="#070707"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--Main horizontal linear layout code end here -->
+</androidx.constraintlayout.widget.ConstraintLayout>
