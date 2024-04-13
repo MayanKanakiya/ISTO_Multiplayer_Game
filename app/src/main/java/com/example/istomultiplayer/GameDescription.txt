@@ -11,3 +11,7 @@ Task :
 2. Know the every GridViews name for move the paws till last 24(Find the GridView name and set the image into it using set adapter. Find the GridView names using drawing each house in notebook) and try and run the code generate by chatGPT).
 3. Find images names that store into individual GridView.
 4.
+
+Error :
+1. List view size is null, for finding image names from the individual GridView. (resolve)
+2.
