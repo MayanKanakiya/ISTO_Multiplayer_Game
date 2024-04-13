@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo2" />
 
     <TextView
         android:id="@+id/MainHeadingTextView"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Ishto Multiplication Game"
-        android:textColor="#009688"
+        android:textColor="#000000"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginBottom="15dp"
         android:text="Player 1:"
-        android:textColor="#009688"
+        android:textColor="#000000"
         android:textSize="19dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/Player1EditText"
@@ -59,7 +59,7 @@
         android:text="Player 2:"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="15dp"
-        android:textColor="#009688"
+        android:textColor="#000000"
         android:textSize="19dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/Player2EditText"
@@ -75,7 +75,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginBottom="15dp"
         android:text="Player 3:"
-        android:textColor="#009688"
+        android:textColor="#000000"
         android:textSize="19dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/Player3EditText"
@@ -91,7 +91,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginBottom="15dp"
         android:text="Player 4:"
-        android:textColor="#009688"
+        android:textColor="#000000"
         android:textSize="19dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/Player4EditText"

@@ -14,4 +14,4 @@ Task :
 
 Error :
 1. List view size is null, for finding image names from the individual GridView. (resolve)
-2.
+2. Ask ChatGPT to add 4-4 images into particular GridView then i have to change ImageAdapter method or not?

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class UnameAdd extends AppCompatActivity {
 
@@ -26,9 +27,19 @@ public class UnameAdd extends AppCompatActivity {
         Player3EditText = findViewById(R.id.Player3EditText);
         Player4EditText = findViewById(R.id.Player4EditText);
         startGameBtn = findViewById(R.id.startGameBtn);
+
         startGameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(Player1EditText.getText().toString().equals("")){
+                    Toast.makeText(UnameAdd.this, "Enter Player 1 Username.", Toast.LENGTH_SHORT).show();
+                }else if(Player2EditText.getText().toString().equals("")){
+                    Toast.makeText(UnameAdd.this, "Enter Player 2 Username.", Toast.LENGTH_SHORT).show();
+                }else if(Player3EditText.getText().toString().equals("")){
+                    Toast.makeText(UnameAdd.this, "Enter Player 3 Username.", Toast.LENGTH_SHORT).show();
+                }else if(Player4EditText.getText().toString().equals("")){
+                    Toast.makeText(UnameAdd.this, "Enter Player 4 Username.", Toast.LENGTH_SHORT).show();
+                }else{
                     String TextSendPlayer1 = Player1EditText.getText().toString();
                     String TextSendPlayer2 = Player2EditText.getText().toString();
                     String TextSendPlayer3 = Player3EditText.getText().toString();
@@ -39,6 +50,7 @@ public class UnameAdd extends AppCompatActivity {
                     intent.putExtra("Player3", TextSendPlayer3);
                     intent.putExtra("Player4", TextSendPlayer4);
                     startActivity(intent);
+                }
             }
         });
     }
