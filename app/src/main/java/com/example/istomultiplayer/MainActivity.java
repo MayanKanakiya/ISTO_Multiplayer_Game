@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Integer> allImageResRandom;
     private List<Integer> selectedImageResRandom;
     private List<ImageView> lstImgRandom;
-    int frontImageCount=0;
+    int frontImageCount = 0;
     private int[] currentPosition = new int[4];
     private int[] nextPosition = new int[4];
     GridView[] ph1arr = new GridView[24];
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.gridView19),
                 findViewById(R.id.gridView18),
                 findViewById(R.id.gridView13)
-            };
+        };
         //            Path define for Player house 2
         @SuppressLint("CutPasteId") GridView[] ph2arr = {
                 findViewById(R.id.gridView10),
@@ -181,7 +183,26 @@ public class MainActivity extends AppCompatActivity {
         try {
             GridView gridView = findViewById(R.id.gridView23);
             ImageAdapter imageAdapter = new ImageAdapter(this);
+            // Add 4 image resources
+            imageAdapter.addImageResource(R.drawable.a1_h1_p1);
+            imageAdapter.addImageResource(R.drawable.a2_h1_p2);
+            imageAdapter.addImageResource(R.drawable.a3_h1_p3);
+            imageAdapter.addImageResource(R.drawable.a4_h1_p4);
+            imageAdapter.addImageResource(R.drawable.a4_h2_p4);
+
             gridView.setAdapter(imageAdapter);
+            int numImages = imageAdapter.getCount();
+            // Determine the number of columns based on the number of images
+            int numColumns = numImages <= 4 ? 2 : 4;
+
+            // Set the number of columns for the GridView
+            gridView.setNumColumns(numColumns);
+
+            if (numColumns == 2) {
+                gridView.setHorizontalSpacing(80);
+                gridView.setVerticalSpacing(80);
+                gridView.setColumnWidth(100);
+            }
 
             // Wait for the GridView to finish setting up its child views
             gridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -192,10 +213,11 @@ public class MainActivity extends AppCompatActivity {
 
                     // Get the list of image names from the adapter
                     imageNames = imageAdapter.getImageNames();
-                        for (String name : imageNames) {
-                            Log.d("Image Name", name);
+                    for (String name : imageNames) {
+                        Log.d("Image Name", name);
                     }
                 }
+
             });
         } catch (Exception e) {
             Log.d("MyError", e.toString());
@@ -218,16 +240,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 onRandomizeButtonClick();
                 updateImageViews();
-                frontImageCount=0;
+                frontImageCount = 0;
             }
         });
         // This below code for shuffle random images when click the start button - code end here
     }
+
     private void updateImageViews() {
         for (int i = 0; i < selectedImageResRandom.size() && i < lstImgRandom.size(); i++) {
             lstImgRandom.get(i).setImageResource(selectedImageResRandom.get(i));
         }
     }
+
     // Check if the image resource represents a front image
     private boolean isFront(int imageRes) {
         return imageRes == R.drawable.front1 || imageRes == R.drawable.front2 ||
