@@ -21,16 +21,15 @@
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="361dp"
             android:layout_height="match_parent">
-            <!--First row 1 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView0"
                 android:layout_width="72dp"
                 android:layout_height="65dp"
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
-                android:stretchMode="columnWidth"/>
-            <!--First row 1 grid  code end here -->
-            <!--First row 2 grid  code start here -->
+                android:stretchMode="columnWidth" />
+
             <GridView
                 android:id="@+id/gridView1"
                 android:layout_width="72dp"
@@ -38,8 +37,7 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--First row 2 grid  code end here -->
-            <!--First row 3 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView2"
                 android:layout_width="72dp"
@@ -47,8 +45,7 @@
                 android:background="#3A90D5"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--First row 3 grid  code end here -->
-            <!--First row 4 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView3"
                 android:layout_width="72dp"
@@ -56,19 +53,15 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--First row 4 grid  code end  here -->
-            <!--First row 5 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView4"
                 android:layout_width="72dp"
                 android:layout_height="65dp"
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
-                android:stretchMode="columnWidth"/>
-            <!--First row 5 grid  code end here -->
-            <!--Second row 1 grid  code start here -->
-            <!--second row 1 grid  code end here -->
-            <!--Second row 2 grid  code start here -->
+                android:stretchMode="columnWidth" />
+
             <GridView
                 android:id="@+id/gridView5"
                 android:layout_width="72dp"
@@ -86,8 +79,7 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--second row 2 grid  code end here -->
-            <!--Second row 3 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView7"
                 android:layout_width="72dp"
@@ -95,17 +87,15 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--second row 3 grid  code end here -->
-            <!--Second row 4 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView8"
                 android:layout_width="72dp"
                 android:layout_height="65dp"
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
-                android:stretchMode="columnWidth"/>
-            <!--second row 4 grid  code end here -->
-            <!--Second row 5 grid  code start here -->
+                android:stretchMode="columnWidth" />
+
             <GridView
                 android:id="@+id/gridView10"
                 android:layout_width="72dp"
@@ -113,10 +103,6 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--second row 5 grid  code end here -->
-            <!--Thrid row 1 grid  code start here -->
-            <!--Third row 1 grid  code end here -->
-            <!--Thrid row 2 grid  code start here -->
 
             <GridView
                 android:id="@+id/gridView11"
@@ -135,10 +121,7 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--Third row 2 grid  code end here -->
-            <!--Thrid row 3 grid  code start here -->
-            <!--Third row 3 grid  code end here -->
-            <!--Thrid row 4 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView13"
                 android:layout_width="72dp"
@@ -154,19 +137,15 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--Third row 4 grid  code end here -->
-            <!--Thrid row 5 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView15"
                 android:layout_width="72dp"
                 android:layout_height="65dp"
                 android:background="#4CAF50"
                 android:gravity="center"
-                android:stretchMode="columnWidth"/>
-            <!--Third row 5 grid  code end here -->
-            <!--Fourth row 1 grid  code start here -->
-            <!--Fourth row 1 grid  code end here -->
-            <!--Fourth row 2 grid  code start here -->
+                android:stretchMode="columnWidth" />
+
             <GridView
                 android:id="@+id/gridView16"
                 android:layout_width="72dp"
@@ -184,8 +163,7 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--Fourth row 2 grid  code end here -->
-            <!--Fourth row 3 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView18"
                 android:layout_width="72dp"
@@ -193,8 +171,7 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--Fourth row 3 grid  code end here -->
-            <!--Fourth row 4 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView19"
                 android:layout_width="72dp"
@@ -202,19 +179,15 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--Fourth row 4 grid  code end here -->
-            <!--Fourth row 5 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView20"
                 android:layout_width="72dp"
                 android:layout_height="65dp"
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
-                android:stretchMode="columnWidth"/>
-            <!--Fourth row 5 grid  code end here -->
-            <!--Fifth row 1 grid  code start here -->
-            <!--Fifth row 1 grid  code end here -->
-            <!--Fifth row 2 grid  code start here -->
+                android:stretchMode="columnWidth" />
+
             <GridView
                 android:id="@+id/gridView21"
                 android:layout_width="72dp"
@@ -232,18 +205,15 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--Fifth row 2 grid  code end here -->
-            <!--Fifth row 3 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView23"
                 android:layout_width="72dp"
                 android:layout_height="65dp"
                 android:background="#D2C230"
                 android:gravity="center"
-                android:stretchMode="columnWidth"/>
+                android:stretchMode="columnWidth" />
 
-            <!--Fifth row 3 grid  code end here -->
-            <!--Fifth row 4 grid  code start here -->
             <GridView
                 android:id="@+id/gridView24"
                 android:layout_width="72dp"
@@ -251,8 +221,7 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--Fifth row 4 grid  code end here -->
-            <!--Fifth row 5 grid  code start here -->
+
             <GridView
                 android:id="@+id/gridView25"
                 android:layout_width="72dp"
@@ -260,7 +229,7 @@
                 android:background="@drawable/grid_layout_border"
                 android:gravity="center"
                 android:stretchMode="columnWidth" />
-            <!--Fifth row 5 grid  code end here -->
+
         </androidx.gridlayout.widget.GridLayout>
         <!--Main grid layout code start here-->
     </LinearLayout>

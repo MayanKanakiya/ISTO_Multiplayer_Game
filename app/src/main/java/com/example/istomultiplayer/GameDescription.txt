@@ -14,4 +14,5 @@ Task :
 
 Error :
 1. List view size is null, for finding image names from the individual GridView. (resolve)
-2. Try to move images into GridView. Additionally adjust 4 image perfectly in GridView if 5 or more images are not there(pending).
+2. Adjust 4 image perfectly in GridView with 2 x 2 matrix otherwise adjust 4 x 4 matrix like structure (resolve).
+3.

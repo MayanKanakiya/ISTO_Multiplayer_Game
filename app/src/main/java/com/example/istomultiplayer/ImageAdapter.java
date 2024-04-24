@@ -66,6 +66,7 @@ public class ImageAdapter extends BaseAdapter {
         addImageName(imageName);
         notifyDataSetChanged();
     }
+
     // Method to add image name to the list
     private void addImageName(String imageName) {
         if (!mImageNames.contains(imageName)) {

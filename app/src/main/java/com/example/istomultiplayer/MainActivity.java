@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     TextView getUname;
     List<String> imageNames;
     Button startBtn;
+    Button A1Btn;
+    Button A2Btn;
+    Button A3Btn;
+    Button A4Btn;
     //    This below three lines of code for shuffling random 8 images(Front-4 and back-4) into 4 imageView
     private List<Integer> allImageResRandom;
     private List<Integer> selectedImageResRandom;
@@ -62,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
         lstImgRandom.add(findViewById(R.id.imageView4));
 
         startBtn = findViewById(R.id.startBtn);
+        A1Btn = findViewById(R.id.A1Btn);
+        A2Btn = findViewById(R.id.A2Btn);
+        A3Btn = findViewById(R.id.A3Btn);
+        A4Btn = findViewById(R.id.A4Btn);
 
         // Initialize currentPosition and nextPosition arrays to 0
         for (int i = 0; i < 4; i++) {
@@ -242,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
                 gridView.setVerticalSpacing(80);
                 gridView.setColumnWidth(100);
             }
-        //Yellow(ph1) gridView - code end here
+            //Yellow(ph1) gridView - code end here
 
 //      2. Green(ph2) gridView - code start here
 
@@ -256,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 gridView1.setVerticalSpacing(80);
                 gridView1.setColumnWidth(100);
             }
-        //Green(ph2) gridView - code end here
+            //Green(ph2) gridView - code end here
 //      3. Blue(ph3) gridView  - code start here
             int numImages2 = imageAdapter3.getCount();
             // Determine the number of columns based on the number of images
@@ -338,6 +346,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // This below code for shuffle random images when click the start button - code end here
+
+//        This below code for move paws into one gridView to another - code start here
+        A1Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Write code here
+            }
+        });
+        A2Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Write code here
+            }
+        });
+        A3Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Write code here
+            }
+        });
+        A4Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Write code here
+            }
+        });
+//        This below code for move paws into one gridView to another - code end here
     }
 
     private void updateImageViews() {
