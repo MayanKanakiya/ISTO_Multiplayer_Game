@@ -54,35 +54,17 @@ public class ImageAdapter extends BaseAdapter {
         }
 
         // Set your image resource here
-        switch (position) {
-            case 0:
-                imageView.setImageResource(R.drawable.a1_h1_p1); // Yellow
-                addImageName("a1_h1_p1");
-                break;
-            case 1:
-                imageView.setImageResource(R.drawable.a2_h1_p2); // Yellow
-                addImageName("a2_h1_p2");
-                break;
-            case 2:
-                imageView.setImageResource(R.drawable.a3_h1_p3); // Yellow
-                addImageName("a3_h1_p3");
-                break;
-            case 3:
-                imageView.setImageResource(R.drawable.a4_h1_p4); // Yellow
-                addImageName("a4_h1_p4");
-                break;
-            case 4:
-                imageView.setImageResource(R.drawable.a4_h2_p4); // Yellow
-                addImageName("a4_h2_p4");
-                break;
-        }
+        imageView.setImageResource(mImageResources.get(position));
         return imageView;
     }
 
     // Method to add image resource to the list
     public void addImageResource(int imageResource) {
-            mImageResources.add(imageResource);
-            notifyDataSetChanged();
+        mImageResources.add(imageResource);
+        // Get the image name from the resource ID
+        String imageName = mContext.getResources().getResourceEntryName(imageResource);
+        addImageName(imageName);
+        notifyDataSetChanged();
     }
     // Method to add image name to the list
     private void addImageName(String imageName) {

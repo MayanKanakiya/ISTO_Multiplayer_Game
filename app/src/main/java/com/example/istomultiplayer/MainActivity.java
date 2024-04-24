@@ -181,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
 //        This below code for arrays for player house(path) and currentPosition and nextPosition of player - start end here
 
         try {
+//          First Yellow(ph1) gridView code for add images into it - code start here
             GridView gridView = findViewById(R.id.gridView23);
             ImageAdapter imageAdapter = new ImageAdapter(this);
             // Add 4 image resources
@@ -188,14 +189,52 @@ public class MainActivity extends AppCompatActivity {
             imageAdapter.addImageResource(R.drawable.a2_h1_p2);
             imageAdapter.addImageResource(R.drawable.a3_h1_p3);
             imageAdapter.addImageResource(R.drawable.a4_h1_p4);
-            imageAdapter.addImageResource(R.drawable.a4_h2_p4);
-
+//            imageAdapter.addImageResource(R.drawable.a4_h2_p4);
             gridView.setAdapter(imageAdapter);
+//           First Yellow(ph1) gridView code for add images into it - code end here
+
+//           Second green(ph2) gridView code for add images into it - code start here
+            GridView gridView1 = findViewById(R.id.gridView15);
+            ImageAdapter imageAdapter1 = new ImageAdapter(this);
+            // Add 4 image resources
+            imageAdapter1.addImageResource(R.drawable.a1_h2_p1);
+            imageAdapter1.addImageResource(R.drawable.a2_h2_p2);
+            imageAdapter1.addImageResource(R.drawable.a3_h2_p3);
+            imageAdapter1.addImageResource(R.drawable.a4_h2_p4);
+//            imageAdapter1.addImageResource(R.drawable.a4_h3_p4);
+            gridView1.setAdapter(imageAdapter1);
+//           Second green(ph2) gridView code for dd images into it - code end here
+
+//            Third Blue(ph3) gridView code for add images into it - code start here
+            GridView gridView2 = findViewById(R.id.gridView2);
+            ImageAdapter imageAdapter2 = new ImageAdapter(this);
+            // Add 4 image resources
+            imageAdapter2.addImageResource(R.drawable.a1_h3_p1);
+            imageAdapter2.addImageResource(R.drawable.a2_h3_p2);
+            imageAdapter2.addImageResource(R.drawable.a3_h3_p3);
+            imageAdapter2.addImageResource(R.drawable.a4_h3_p4);
+//            imageAdapter2.addImageResource(R.drawable.a4_h4_p4);
+            gridView2.setAdapter(imageAdapter2);
+//            Third Blue(ph3) gridView code for add images into it - code end here
+
+//            Fourth Red(ph4) gridView code for add images into it - code start here
+            GridView gridView3 = findViewById(R.id.gridView11);
+            ImageAdapter imageAdapter3 = new ImageAdapter(this);
+            // Add 4 image resources
+            imageAdapter3.addImageResource(R.drawable.a1_h4_p1);
+            imageAdapter3.addImageResource(R.drawable.a2_h4_p2);
+            imageAdapter3.addImageResource(R.drawable.a3_h4_p3);
+            imageAdapter3.addImageResource(R.drawable.a4_h4_p4);
+//            imageAdapter3.addImageResource(R.drawable.a4_h1_p4);
+            gridView3.setAdapter(imageAdapter3);
+//            Fourth Red(ph4) gridView code for add images into it - code end here
+
+//            This below code for add particular gridView columnWidth, Horizontal and vertical spacing, and numColumn dynamically and adjust 2 x 2 and 4 x 4 images dynamically - code start here
+//      1. Yellow(ph1) gridView - code start here
             int numImages = imageAdapter.getCount();
             // Determine the number of columns based on the number of images
             int numColumns = numImages <= 4 ? 2 : 4;
 
-            // Set the number of columns for the GridView
             gridView.setNumColumns(numColumns);
 
             if (numColumns == 2) {
@@ -203,22 +242,77 @@ public class MainActivity extends AppCompatActivity {
                 gridView.setVerticalSpacing(80);
                 gridView.setColumnWidth(100);
             }
+        //Yellow(ph1) gridView - code end here
 
-            // Wait for the GridView to finish setting up its child views
-            gridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    // Remove the listener to avoid multiple calls
-                    gridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//      2. Green(ph2) gridView - code start here
 
-                    // Get the list of image names from the adapter
-                    imageNames = imageAdapter.getImageNames();
-                    for (String name : imageNames) {
-                        Log.d("Image Name", name);
-                    }
-                }
+            int numImages1 = imageAdapter1.getCount();
+            // Determine the number of columns based on the number of images
+            int numColumns1 = numImages1 <= 4 ? 2 : 4;
+            gridView1.setNumColumns(numColumns1);
 
-            });
+            if (numColumns1 == 2) {
+                gridView1.setHorizontalSpacing(80);
+                gridView1.setVerticalSpacing(80);
+                gridView1.setColumnWidth(100);
+            }
+        //Green(ph2) gridView - code end here
+//      3. Blue(ph3) gridView  - code start here
+            int numImages2 = imageAdapter3.getCount();
+            // Determine the number of columns based on the number of images
+            int numColumns2 = numImages2 <= 4 ? 2 : 4;
+            gridView2.setNumColumns(numColumns2);
+
+            if (numColumns2 == 2) {
+                gridView2.setHorizontalSpacing(80);
+                gridView2.setVerticalSpacing(80);
+                gridView2.setColumnWidth(100);
+            }
+//      Blue(ph3) gridView  - code end  here
+
+//      4. Red(ph4) gridView - code start here
+            int numImages3 = imageAdapter3.getCount();
+            // Determine the number of columns based on the number of images
+            int numColumns3 = numImages3 <= 4 ? 2 : 4;
+            gridView3.setNumColumns(numColumns3);
+
+            if (numColumns3 == 2) {
+                gridView3.setHorizontalSpacing(80);
+                gridView3.setVerticalSpacing(80);
+                gridView3.setColumnWidth(100);
+            }
+//      4Red(ph4) gridView - code end here
+
+            // This below code for add particular gridView columnWidth, Horizontal and vertical spacing, and numColumn dynamically and adjust 2 x 2 and 4 x 4 images dynamically - code end here
+
+            // After setting adapter, retrieve the image names - first Yellow(ph1) - code start here
+            List<String> imageNamesInGridView = imageAdapter.getImageNames();
+            for (String imageName : imageNamesInGridView) {
+                Log.d("YellowPh1", imageName);
+            }
+            // After setting adapter, retrieve the image names - first Yellow(ph2) - code end here
+
+            // After setting adapter, retrieve the image names - second green(ph2) - code start here
+            List<String> imageNamesInGridView1 = imageAdapter1.getImageNames();
+            for (String imageName : imageNamesInGridView1) {
+                Log.d("GreenPh2", imageName);
+            }
+            // After setting adapter, retrieve the image names - second green(ph2) - code end here
+
+            // After setting adapter, retrieve the image names - Third Blue(ph3) - code start here
+            List<String> imageNamesInGridView2 = imageAdapter2.getImageNames();
+            for (String imageName : imageNamesInGridView2) {
+                Log.d("BluePh3", imageName);
+            }
+            // After setting adapter, retrieve the image names - Third Blue(ph3) - code end here
+
+            // After setting adapter, retrieve the image names - Red(ph4) - code start here
+            List<String> imageNamesInGridView3 = imageAdapter3.getImageNames();
+            for (String imageName : imageNamesInGridView3) {
+                Log.d("RedPh4", imageName);
+            }
+            // After setting adapter, retrieve the image names - Red(ph4) - code end here
+
         } catch (Exception e) {
             Log.d("MyError", e.toString());
         }
