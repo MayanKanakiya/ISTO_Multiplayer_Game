@@ -57,6 +57,14 @@ public class ImageAdapter extends BaseAdapter {
         imageView.setImageResource(mImageResources.get(position));
         return imageView;
     }
+    // Method to remove image by name from the list
+    public void removeImage(String imageName) {
+        int index = mImageNames.indexOf(imageName);
+        if (index != -1) {
+            mImageResources.remove(index);
+            mImageNames.remove(index);
+        }
+    }
 
     // Method to add image resource to the list
     public void addImageResource(int imageResource) {

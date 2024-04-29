@@ -10,9 +10,42 @@ Task :
    imageView size : width:20dp, height:33dp
 2. Know the every GridViews name for move the paws till last 24(Find the GridView name and set the image into it using set adapter. Find the GridView names using drawing each house in notebook) and try and run the code generate by chatGPT).
 3. Find images names that store into individual GridView.
-4.
+4. Compare single player logic to multiple player logic for move paws in gridViews and also find how to give chance for each house for play game.
 
 Error :
 1. List view size is null, for finding image names from the individual GridView. (resolve)
 2. Adjust 4 image perfectly in GridView with 2 x 2 matrix otherwise adjust 4 x 4 matrix like structure (resolve).
 3.
+
+Logic :
+1.
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 1. Code
+ ---------
+  // After setting adapter, retrieve the image names - first Yellow(ph1) - code start here
+                      List<String> imageNamesInGridView = imageAdapter.getImageNames();
+                      for (String imageName : imageNamesInGridView) {
+                          Log.d("YellowPh1", imageName);
+                      }
+                      // After setting adapter, retrieve the image names - first Yellow(ph2) - code end here
+
+                      // After setting adapter, retrieve the image names - second green(ph2) - code start here
+                      List<String> imageNamesInGridView1 = imageAdapter1.getImageNames();
+                      for (String imageName : imageNamesInGridView1) {
+                          Log.d("GreenPh2", imageName);
+                      }
+                      // After setting adapter, retrieve the image names - second green(ph2) - code end here
+
+                      // After setting adapter, retrieve the image names - Third Blue(ph3) - code start here
+                      List<String> imageNamesInGridView2 = imageAdapter2.getImageNames();
+                      for (String imageName : imageNamesInGridView2) {
+                          Log.d("BluePh3", imageName);
+                      }
+                      // After setting adapter, retrieve the image names - Third Blue(ph3) - code end here
+
+                      // After setting adapter, retrieve the image names - Red(ph4) - code start here
+                      List<String> imageNamesInGridView3 = imageAdapter3.getImageNames();
+                      for (String imageName : imageNamesInGridView3) {
+                          Log.d("RedPh4", imageName);
+                      }
+                      // After setting adapter, retrieve the image names - Red(ph4) - code end here

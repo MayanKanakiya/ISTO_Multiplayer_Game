@@ -250,11 +250,10 @@
 
     <TextView
         android:id="@+id/getUname"
-        android:layout_width="141dp"
+        android:layout_width="300dp"
         android:layout_height="28dp"
         android:layout_marginBottom="204dp"
         android:backgroundTint="@color/black"
-        android:text="Username"
         android:textAlignment="center"
         android:textColor="#070707"
         android:textSize="20sp"

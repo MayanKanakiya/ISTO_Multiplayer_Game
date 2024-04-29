@@ -4,19 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.istomultiplayer.ImageAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button A2Btn;
     Button A3Btn;
     Button A4Btn;
+    private boolean gameStarted = false;
     //    This below three lines of code for shuffling random 8 images(Front-4 and back-4) into 4 imageView
     private List<Integer> allImageResRandom;
     private List<Integer> selectedImageResRandom;
@@ -37,11 +35,14 @@ public class MainActivity extends AppCompatActivity {
     int frontImageCount = 0;
     private int[] currentPosition = new int[4];
     private int[] nextPosition = new int[4];
-    GridView[] ph1arr = new GridView[24];
-    GridView[] ph2arr = new GridView[24];
-    GridView[] ph3arr = new GridView[24];
-    GridView[] ph4arr = new GridView[24];
+    GridView[] ph1arr = new GridView[25];
+    GridView[] ph2arr = new GridView[25];
+    GridView[] ph3arr = new GridView[25];
+    GridView[] ph4arr = new GridView[25];
+    int numPlayers = 4;
+    int currentPlayerIndexHouse = 0;
 
+    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
         A2Btn = findViewById(R.id.A2Btn);
         A3Btn = findViewById(R.id.A3Btn);
         A4Btn = findViewById(R.id.A4Btn);
+        A1Btn.setEnabled(false);
+        A2Btn.setEnabled(false);
+        A3Btn.setEnabled(false);
+        A4Btn.setEnabled(false);
 
         // Initialize currentPosition and nextPosition arrays to 0
         for (int i = 0; i < 4; i++) {
@@ -78,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
         }
 //        This below code for arrays for player house(path) and currentPosition and nextPosition of player - start code here
 //            Path define for Player house 1
-        @SuppressLint("CutPasteId") GridView[] ph1arr = {
+        ph1arr = new GridView[]{
+                findViewById(R.id.gridView23),
                 findViewById(R.id.gridView24),
                 findViewById(R.id.gridView25),
                 findViewById(R.id.gridView20),
@@ -105,7 +111,8 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.gridView13)
         };
         //            Path define for Player house 2
-        @SuppressLint("CutPasteId") GridView[] ph2arr = {
+        ph2arr = new GridView[]{
+                findViewById(R.id.gridView15),
                 findViewById(R.id.gridView10),
                 findViewById(R.id.gridView4),
                 findViewById(R.id.gridView3),
@@ -132,7 +139,8 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.gridView13)
         };
         //            Path define for Player house 3
-        @SuppressLint("CutPasteId") GridView[] ph3arr = {
+        ph3arr = new GridView[]{
+                findViewById(R.id.gridView2),
                 findViewById(R.id.gridView1),
                 findViewById(R.id.gridView0),
                 findViewById(R.id.gridView5),
@@ -159,7 +167,8 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.gridView13)
         };
         //            Path define for Player house 4
-        @SuppressLint("CutPasteId") GridView[] ph4arr = {
+        ph4arr = new GridView[]{
+                findViewById(R.id.gridView11),
                 findViewById(R.id.gridView16),
                 findViewById(R.id.gridView21),
                 findViewById(R.id.gridView22),
@@ -293,56 +302,66 @@ public class MainActivity extends AppCompatActivity {
 
             // This below code for add particular gridView columnWidth, Horizontal and vertical spacing, and numColumn dynamically and adjust 2 x 2 and 4 x 4 images dynamically - code end here
 
-            // After setting adapter, retrieve the image names - first Yellow(ph1) - code start here
-            List<String> imageNamesInGridView = imageAdapter.getImageNames();
-            for (String imageName : imageNamesInGridView) {
-                Log.d("YellowPh1", imageName);
-            }
-            // After setting adapter, retrieve the image names - first Yellow(ph2) - code end here
-
-            // After setting adapter, retrieve the image names - second green(ph2) - code start here
-            List<String> imageNamesInGridView1 = imageAdapter1.getImageNames();
-            for (String imageName : imageNamesInGridView1) {
-                Log.d("GreenPh2", imageName);
-            }
-            // After setting adapter, retrieve the image names - second green(ph2) - code end here
-
-            // After setting adapter, retrieve the image names - Third Blue(ph3) - code start here
-            List<String> imageNamesInGridView2 = imageAdapter2.getImageNames();
-            for (String imageName : imageNamesInGridView2) {
-                Log.d("BluePh3", imageName);
-            }
-            // After setting adapter, retrieve the image names - Third Blue(ph3) - code end here
-
-            // After setting adapter, retrieve the image names - Red(ph4) - code start here
-            List<String> imageNamesInGridView3 = imageAdapter3.getImageNames();
-            for (String imageName : imageNamesInGridView3) {
-                Log.d("RedPh4", imageName);
-            }
-            // After setting adapter, retrieve the image names - Red(ph4) - code end here
-
         } catch (Exception e) {
             Log.d("MyError", e.toString());
         }
-        //This below code get set username - start here
-        try {
-            getUname = findViewById(R.id.getUname);
-            Intent intent = getIntent();
-            String ReceivedPlayer1 = intent.getStringExtra("Player1");
-            Log.d("Player1", ReceivedPlayer1);
-            getUname.setText(ReceivedPlayer1);
-        } catch (Exception e) {
-            Log.d("ReceviedUnameError", e.toString());
-        }
-        //This below code get set username - End here
 
         // This below code for shuffle random images when click the start button - code start here
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gameStarted = true;
                 onRandomizeButtonClick();
                 updateImageViews();
-                frontImageCount = 0;
+                A1Btn.setEnabled(true);
+                A2Btn.setEnabled(true);
+                A3Btn.setEnabled(true);
+                A4Btn.setEnabled(true);
+                startBtn.setEnabled(false);
+//                This below code for change A1 to A4 button color and Username when particular chance of each house - code start here
+                String[] players = {"Player 1", "Player 2", "Player 3", "Player 4"};
+
+                Log.d("Player", "Current player: " + players[currentPlayerIndexHouse]);
+
+                currentPlayerIndexHouse++;
+
+                if (currentPlayerIndexHouse >= numPlayers) {
+                    currentPlayerIndexHouse = 0;
+                }
+                getUname = findViewById(R.id.getUname);
+                Intent intent = getIntent();
+                if (currentPlayerIndexHouse == 1) {
+                    A1Btn.setBackgroundColor(Color.parseColor("#D2C230"));
+                    A2Btn.setBackgroundColor(Color.parseColor("#D2C230"));
+                    A3Btn.setBackgroundColor(Color.parseColor("#D2C230"));
+                    A4Btn.setBackgroundColor(Color.parseColor("#D2C230"));
+                    String ReceivedPlayer1 = intent.getStringExtra("Player1");
+                    getUname.setText(ReceivedPlayer1);
+                } else if (currentPlayerIndexHouse == 2) {
+                    A1Btn.setBackgroundColor(Color.parseColor("#4CAF50"));
+                    A2Btn.setBackgroundColor(Color.parseColor("#4CAF50"));
+                    A3Btn.setBackgroundColor(Color.parseColor("#4CAF50"));
+                    A4Btn.setBackgroundColor(Color.parseColor("#4CAF50"));
+                    String ReceivedPlayer2 = intent.getStringExtra("Player2");
+                    getUname.setText(ReceivedPlayer2);
+
+                } else if (currentPlayerIndexHouse == 3) {
+                    A1Btn.setBackgroundColor(Color.parseColor("#3A90D5"));
+                    A2Btn.setBackgroundColor(Color.parseColor("#3A90D5"));
+                    A3Btn.setBackgroundColor(Color.parseColor("#3A90D5"));
+                    A4Btn.setBackgroundColor(Color.parseColor("#3A90D5"));
+                    String ReceivedPlayer3 = intent.getStringExtra("Player3");
+                    getUname.setText(ReceivedPlayer3);
+
+                } else {
+                    A1Btn.setBackgroundColor(Color.parseColor("#E4635A"));
+                    A2Btn.setBackgroundColor(Color.parseColor("#E4635A"));
+                    A3Btn.setBackgroundColor(Color.parseColor("#E4635A"));
+                    A4Btn.setBackgroundColor(Color.parseColor("#E4635A"));
+                    String ReceivedPlayer4 = intent.getStringExtra("Player4");
+                    getUname.setText(ReceivedPlayer4);
+                }
+                // This below code for change A1 to A4 button color and Username when particular chance of each house - code end here
             }
         });
         // This below code for shuffle random images when click the start button - code end here
@@ -351,30 +370,130 @@ public class MainActivity extends AppCompatActivity {
         A1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Write code here
+                startBtn.setEnabled(true);
+                if (gameStarted) {
+                    nextPosition[0] = nextPosition[0] + frontImageCount;
+                    pawnMove(currentPlayerIndexHouse, 1, nextPosition[0], currentPosition[0]);
+                } else {
+                    showToast("Click start button for the start the game");
+                }
+                frontImageCount = 0;
             }
         });
         A2Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Write code here
+                startBtn.setEnabled(true);
+                if (gameStarted) {
+//                    Write code here
+                } else {
+                    showToast("Click start button for the start the game");
+                }
+                frontImageCount = 0;
             }
         });
         A3Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Write code here
+                startBtn.setEnabled(true);
+                if (gameStarted) {
+//                    Write code here
+                } else {
+                    showToast("Click start button for the start the game");
+                }
+                frontImageCount = 0;
             }
         });
         A4Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Write code here
+                startBtn.setEnabled(true);
+                if (gameStarted) {
+//                    Write code here
+                } else {
+                    showToast("Click start button for the start the game");
+                }
+                frontImageCount = 0;
             }
         });
 //        This below code for move paws into one gridView to another - code end here
     }
 
+    //This below method for moving paws in one gridView to another - code start here
+    private void pawnMove(int currentPlayerIndexHouse, int pawIndex, int next_arr, int curr_arr) {
+        if (currentPlayerIndexHouse == 1) {
+            try {
+                GridView sourceGridView = ph1arr[curr_arr];
+                GridView destinationGridView = ph1arr[next_arr];
+                ImageAdapter imageAdapter = new ImageAdapter(this);
+                int numImages = imageAdapter.getCount();
+                // Determine the number of columns based on the number of images
+                int numColumns = numImages <= 4 ? 2 : 4;
+
+                sourceGridView.setNumColumns(numColumns);
+
+                if (numColumns == 2) {
+                    sourceGridView.setHorizontalSpacing(80);
+                    sourceGridView.setVerticalSpacing(80);
+                    sourceGridView.setColumnWidth(100);
+                }
+
+                destinationGridView.setNumColumns(numColumns);
+
+                if (numColumns == 2) {
+                    destinationGridView.setHorizontalSpacing(80);
+                    destinationGridView.setVerticalSpacing(80);
+                    destinationGridView.setColumnWidth(100);
+                }
+
+                // Get the adapter of the source GridView
+                ImageAdapter sourceAdapter = (ImageAdapter) sourceGridView.getAdapter();
+                // Get the adapter of the destination GridView
+                ImageAdapter destinationAdapter = (ImageAdapter) destinationGridView.getAdapter();
+
+                // Initialize the destination adapter if it's null
+                if (destinationAdapter == null) {
+                    destinationAdapter = new ImageAdapter(this);
+                    destinationGridView.setAdapter(destinationAdapter);
+                }
+
+                // Get the image name to move
+                String imageName = "a" + pawIndex + "_h" + currentPlayerIndexHouse + "_p" + pawIndex;
+
+                // Check if the source adapter contains the image name
+                if (sourceAdapter != null && sourceAdapter.getImageNames().contains(imageName)) {
+                    // Remove the image from the source adapter
+                    sourceAdapter.removeImage(imageName);
+                    // Add the image to the destination adapter
+                    destinationAdapter.addImageResource(getResources().getIdentifier(imageName, "drawable", getPackageName()));
+
+                    // Notify the adapters of the data changes
+                    sourceAdapter.notifyDataSetChanged();
+                    destinationAdapter.notifyDataSetChanged();
+                    currentPosition[pawIndex - 1] = next_arr;
+                    frontImageCount = 0;
+                } else {
+                    Log.e("MovePawError", "Error moving paw: Image not found - " + imageName);
+                }
+            } catch (Exception e) {
+                Log.e("MovePawError", "Error moving paw: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else if (currentPlayerIndexHouse == 2) {
+
+        } else if (currentPlayerIndexHouse == 3) {
+
+        } else if (currentPlayerIndexHouse == 0) { // currentPlayerIndexHouse 0 or 4 both are same
+
+        }
+
+        A1Btn.setEnabled(false);
+        A2Btn.setEnabled(false);
+        A3Btn.setEnabled(false);
+        A4Btn.setEnabled(false);
+    }
+
+    //This below method for moving paws in one gridView to another - code end here
     private void updateImageViews() {
         for (int i = 0; i < selectedImageResRandom.size() && i < lstImgRandom.size(); i++) {
             lstImgRandom.get(i).setImageResource(selectedImageResRandom.get(i));
@@ -385,6 +504,11 @@ public class MainActivity extends AppCompatActivity {
     private boolean isFront(int imageRes) {
         return imageRes == R.drawable.front1 || imageRes == R.drawable.front2 ||
                 imageRes == R.drawable.front3 || imageRes == R.drawable.front4;
+    }
+
+    // Helper method to display a Toast message
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     public void onRandomizeButtonClick() {
