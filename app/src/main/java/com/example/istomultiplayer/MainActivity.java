@@ -375,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
                     String ReceivedPlayer3 = intent.getStringExtra("Player3");
                     getUname.setText(ReceivedPlayer3);
 
-                } else {
+                } else if (currentPlayerIndexHouse == 0) {
                     A1Btn.setBackgroundColor(Color.parseColor("#E4635A"));
                     A2Btn.setBackgroundColor(Color.parseColor("#E4635A"));
                     A3Btn.setBackgroundColor(Color.parseColor("#E4635A"));
@@ -387,7 +387,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // This below code for shuffle random images when click the start button - code end here
-
 //        This below code for move paws into one gridView to another - code start here
         A1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -396,16 +395,17 @@ public class MainActivity extends AppCompatActivity {
                 if (gameStarted) {
                     if (currentPlayerIndexHouse == 1) {
                         nextPosition1[0] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 1, nextPosition1[0], currentPosition1[0]);
+                        pawnMove(currentPlayerIndexHouse, 1, nextPosition1[0], currentPosition1[0]);
                     } else if (currentPlayerIndexHouse == 2) {
                         nextPosition2[0] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 1, nextPosition2[0], currentPosition2[0]);
+                        pawnMove2(currentPlayerIndexHouse, 1, nextPosition2[0], currentPosition2[0]);
                     } else if (currentPlayerIndexHouse == 3) {
                         nextPosition3[0] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 1, nextPosition3[0], currentPosition3[0]);
-                    } else {
+                        pawnMove3(currentPlayerIndexHouse, 1, nextPosition3[0], currentPosition3[0]);
+                    } else if (currentPlayerIndexHouse == 0) {
+                        Log.d("A1Red", "Clicked");
                         nextPosition4[0] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 1, nextPosition4[0], currentPosition4[0]);
+                        pawnMove4(currentPlayerIndexHouse, 1, nextPosition4[0], currentPosition4[0]);
                     }
                 } else {
                     showToast("Click start button for the start the game");
@@ -420,16 +420,16 @@ public class MainActivity extends AppCompatActivity {
                 if (gameStarted) {
                     if (currentPlayerIndexHouse == 1) {
                         nextPosition1[1] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 2, nextPosition1[1], currentPosition1[1]);
+                        pawnMove(currentPlayerIndexHouse, 2, nextPosition1[1], currentPosition1[1]);
                     } else if (currentPlayerIndexHouse == 2) {
                         nextPosition2[1] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 2, nextPosition2[1], currentPosition2[1]);
+                        pawnMove2(currentPlayerIndexHouse, 2, nextPosition2[1], currentPosition2[1]);
                     } else if (currentPlayerIndexHouse == 3) {
                         nextPosition3[1] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 2, nextPosition3[1], currentPosition3[1]);
-                    } else {
+                        pawnMove3(currentPlayerIndexHouse, 2, nextPosition3[1], currentPosition3[1]);
+                    } else if (currentPlayerIndexHouse == 0) {
                         nextPosition4[1] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 2, nextPosition4[1], currentPosition4[1]);
+                        pawnMove4(currentPlayerIndexHouse, 2, nextPosition4[1], currentPosition4[1]);
                     }
 
                 } else {
@@ -445,16 +445,16 @@ public class MainActivity extends AppCompatActivity {
                 if (gameStarted) {
                     if (currentPlayerIndexHouse == 1) {
                         nextPosition1[2] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 3, nextPosition1[2], currentPosition1[2]);
+                        pawnMove(currentPlayerIndexHouse, 3, nextPosition1[2], currentPosition1[2]);
                     } else if (currentPlayerIndexHouse == 2) {
                         nextPosition2[2] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 3, nextPosition2[2], currentPosition2[2]);
+                        pawnMove2(currentPlayerIndexHouse, 3, nextPosition2[2], currentPosition2[2]);
                     } else if (currentPlayerIndexHouse == 3) {
                         nextPosition3[2] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 3, nextPosition3[2], currentPosition3[2]);
-                    } else {
+                        pawnMove3(currentPlayerIndexHouse, 3, nextPosition3[2], currentPosition3[2]);
+                    } else if (currentPlayerIndexHouse == 0) {
                         nextPosition4[2] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 3, nextPosition4[2], currentPosition4[2]);
+                        pawnMove4(currentPlayerIndexHouse, 3, nextPosition4[2], currentPosition4[2]);
                     }
 
                 } else {
@@ -470,16 +470,16 @@ public class MainActivity extends AppCompatActivity {
                 if (gameStarted) {
                     if (currentPlayerIndexHouse == 1) {
                         nextPosition1[3] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 4, nextPosition1[3], currentPosition1[3]);
+                        pawnMove(currentPlayerIndexHouse, 4, nextPosition1[3], currentPosition1[3]);
                     } else if (currentPlayerIndexHouse == 2) {
                         nextPosition2[3] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 4, nextPosition2[3], currentPosition2[3]);
+                        pawnMove2(currentPlayerIndexHouse, 4, nextPosition2[3], currentPosition2[3]);
                     } else if (currentPlayerIndexHouse == 3) {
                         nextPosition3[3] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 4, nextPosition3[3], currentPosition3[3]);
-                    } else {
+                        pawnMove3(currentPlayerIndexHouse, 4, nextPosition3[3], currentPosition3[3]);
+                    } else if (currentPlayerIndexHouse == 0) {
                         nextPosition4[3] += frontImageCount;
-                        PlayerHousePawnMove(currentPlayerIndexHouse, 4, nextPosition4[3], currentPosition4[3]);
+                        pawnMove4(currentPlayerIndexHouse, 4, nextPosition4[3], currentPosition4[3]);
                     }
                 } else {
                     showToast("Click start button for the start the game");
@@ -491,35 +491,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //This below method for moving paws in one gridView to another - code start here
-    private void PlayerHousePawnMove(int currentPlayerIndexHouse, int pawIndex, int next_arr, int curr_arr) {
-        if (currentPlayerIndexHouse == 1) {
-            pawnMove(currentPlayerIndexHouse, pawIndex, next_arr, curr_arr);
-        } else if (currentPlayerIndexHouse == 2) {
-            pawnMove(currentPlayerIndexHouse, pawIndex, next_arr, curr_arr);
-        } else if (currentPlayerIndexHouse == 3) {
-            pawnMove(currentPlayerIndexHouse, pawIndex, next_arr, curr_arr);
-        } else {
-            pawnMove(currentPlayerIndexHouse, pawIndex, next_arr, curr_arr);
-        }
-    }
-
     private void pawnMove(int currentPlayerIndexHouse, int pawIndex, int next_arr, int curr_arr) {
         try {
-            GridView sourceGridView;
-            GridView destinationGridView;
-            if (currentPlayerIndexHouse == 1) {
-                sourceGridView = ph1arr[curr_arr];
-                destinationGridView = ph1arr[next_arr];
-            } else if (currentPlayerIndexHouse == 2) {
-                sourceGridView = ph2arr[curr_arr];
-                destinationGridView = ph2arr[next_arr];
-            } else if (currentPlayerIndexHouse == 3) {
-                sourceGridView = ph3arr[curr_arr];
-                destinationGridView = ph3arr[next_arr];
-            } else {
-                sourceGridView = ph4arr[curr_arr];
-                destinationGridView = ph4arr[next_arr];
-            }
+
+            GridView sourceGridView = ph1arr[curr_arr];
+            GridView destinationGridView = ph1arr[next_arr];
 
             // Get the adapter of the source GridView
             ImageAdapter sourceAdapter = (ImageAdapter) sourceGridView.getAdapter();
@@ -568,6 +544,217 @@ public class MainActivity extends AppCompatActivity {
                 destinationAdapter.notifyDataSetChanged();
 
                 currentPosition1[pawIndex - 1] = next_arr;
+                A1Btn.setEnabled(false);
+                A2Btn.setEnabled(false);
+                A3Btn.setEnabled(false);
+                A4Btn.setEnabled(false);
+
+                // Update the GridView layouts
+                updateGridViewLayout(sourceGridView);
+                updateGridViewLayout(destinationGridView);
+            } else {
+                Log.e("MovePawError", "Error moving paw: Image not found - " + imageName);
+            }
+        } catch (Exception e) {
+            Log.e("MovePawError", "Error moving paw: " + e.getMessage());
+            e.printStackTrace();
+        }
+        frontImageCount = 0;
+    }
+
+    private void pawnMove2(int currentPlayerIndexHouse, int pawIndex, int next_arr, int curr_arr) {
+        try {
+
+            GridView sourceGridView = ph2arr[curr_arr];
+            GridView destinationGridView = ph2arr[next_arr];
+
+            // Get the adapter of the source GridView
+            ImageAdapter sourceAdapter = (ImageAdapter) sourceGridView.getAdapter();
+            // Get the adapter of the destination GridView
+            ImageAdapter destinationAdapter = (ImageAdapter) destinationGridView.getAdapter();
+
+            // Initialize the destination adapter if it's null
+            if (destinationAdapter == null) {
+                destinationAdapter = new ImageAdapter(this);
+                destinationGridView.setAdapter(destinationAdapter);
+            }
+
+            // Get the number of images in the destination grid view
+            int numImages = destinationAdapter.getCount();
+
+            // Determine the number of columns based on the number of images
+            int numColumns = numImages <= 4 ? 2 : 4;
+
+            // Set the number of columns for source and destination grid views
+            sourceGridView.setNumColumns(numColumns);
+            destinationGridView.setNumColumns(numColumns);
+
+            // Adjust spacing and column width for 4x4 structure
+            if (numColumns == 4) {
+                sourceGridView.setHorizontalSpacing(20);
+                sourceGridView.setVerticalSpacing(20);
+                sourceGridView.setColumnWidth(100);
+
+                destinationGridView.setHorizontalSpacing(20);
+                destinationGridView.setVerticalSpacing(20);
+                destinationGridView.setColumnWidth(100);
+            }
+
+            // Get the image name to move
+            String imageName = "a" + pawIndex + "_h" + currentPlayerIndexHouse + "_p" + pawIndex;
+
+            // Check if the source adapter contains the image name
+            if (sourceAdapter != null && sourceAdapter.getImageNames().contains(imageName)) {
+                // Remove the image from the source adapter
+                sourceAdapter.removeImage(imageName);
+                // Add the image to the destination adapter
+                destinationAdapter.addImageResource(getResources().getIdentifier(imageName, "drawable", getPackageName()));
+
+                // Notify the adapters of the data changes
+                sourceAdapter.notifyDataSetChanged();
+                destinationAdapter.notifyDataSetChanged();
+
+                currentPosition2[pawIndex - 1] = next_arr;
+                A1Btn.setEnabled(false);
+                A2Btn.setEnabled(false);
+                A3Btn.setEnabled(false);
+                A4Btn.setEnabled(false);
+
+                // Update the GridView layouts
+                updateGridViewLayout(sourceGridView);
+                updateGridViewLayout(destinationGridView);
+            } else {
+                Log.e("MovePawError", "Error moving paw: Image not found - " + imageName);
+            }
+        } catch (Exception e) {
+            Log.e("MovePawError", "Error moving paw: " + e.getMessage());
+            e.printStackTrace();
+        }
+        frontImageCount = 0;
+    }
+
+    private void pawnMove3(int currentPlayerIndexHouse, int pawIndex, int next_arr, int curr_arr) {
+        try {
+
+            GridView sourceGridView = ph3arr[curr_arr];
+            GridView destinationGridView = ph3arr[next_arr];
+
+            // Get the adapter of the source GridView
+            ImageAdapter sourceAdapter = (ImageAdapter) sourceGridView.getAdapter();
+            // Get the adapter of the destination GridView
+            ImageAdapter destinationAdapter = (ImageAdapter) destinationGridView.getAdapter();
+
+            // Initialize the destination adapter if it's null
+            if (destinationAdapter == null) {
+                destinationAdapter = new ImageAdapter(this);
+                destinationGridView.setAdapter(destinationAdapter);
+            }
+
+            // Get the number of images in the destination grid view
+            int numImages = destinationAdapter.getCount();
+
+            // Determine the number of columns based on the number of images
+            int numColumns = numImages <= 4 ? 2 : 4;
+
+            // Set the number of columns for source and destination grid views
+            sourceGridView.setNumColumns(numColumns);
+            destinationGridView.setNumColumns(numColumns);
+
+            // Adjust spacing and column width for 4x4 structure
+            if (numColumns == 4) {
+                sourceGridView.setHorizontalSpacing(20);
+                sourceGridView.setVerticalSpacing(20);
+                sourceGridView.setColumnWidth(100);
+
+                destinationGridView.setHorizontalSpacing(20);
+                destinationGridView.setVerticalSpacing(20);
+                destinationGridView.setColumnWidth(100);
+            }
+
+            // Get the image name to move
+            String imageName = "a" + pawIndex + "_h" + currentPlayerIndexHouse + "_p" + pawIndex;
+
+            // Check if the source adapter contains the image name
+            if (sourceAdapter != null && sourceAdapter.getImageNames().contains(imageName)) {
+                // Remove the image from the source adapter
+                sourceAdapter.removeImage(imageName);
+                // Add the image to the destination adapter
+                destinationAdapter.addImageResource(getResources().getIdentifier(imageName, "drawable", getPackageName()));
+
+                // Notify the adapters of the data changes
+                sourceAdapter.notifyDataSetChanged();
+                destinationAdapter.notifyDataSetChanged();
+
+                currentPosition3[pawIndex - 1] = next_arr;
+                A1Btn.setEnabled(false);
+                A2Btn.setEnabled(false);
+                A3Btn.setEnabled(false);
+                A4Btn.setEnabled(false);
+
+                // Update the GridView layouts
+                updateGridViewLayout(sourceGridView);
+                updateGridViewLayout(destinationGridView);
+            } else {
+                Log.e("MovePawError", "Error moving paw: Image not found - " + imageName);
+            }
+        } catch (Exception e) {
+            Log.e("MovePawError", "Error moving paw: " + e.getMessage());
+            e.printStackTrace();
+        }
+        frontImageCount = 0;
+    }
+
+    private void pawnMove4(int currentPlayerIndexHouse, int pawIndex, int next_arr, int curr_arr) {
+        try {
+            GridView sourceGridView = ph4arr[curr_arr];
+            GridView destinationGridView = ph4arr[next_arr];
+            // Get the adapter of the source GridView
+            ImageAdapter sourceAdapter = (ImageAdapter) sourceGridView.getAdapter();
+            // Get the adapter of the destination GridView
+            ImageAdapter destinationAdapter = (ImageAdapter) destinationGridView.getAdapter();
+
+            // Initialize the destination adapter if it's null
+            if (destinationAdapter == null) {
+                destinationAdapter = new ImageAdapter(this);
+                destinationGridView.setAdapter(destinationAdapter);
+            }
+
+            // Get the number of images in the destination grid view
+            int numImages = destinationAdapter.getCount();
+
+            // Determine the number of columns based on the number of images
+            int numColumns = numImages <= 4 ? 2 : 4;
+
+            // Set the number of columns for source and destination grid views
+            sourceGridView.setNumColumns(numColumns);
+            destinationGridView.setNumColumns(numColumns);
+
+            // Adjust spacing and column width for 4x4 structure
+            if (numColumns == 4) {
+                sourceGridView.setHorizontalSpacing(20);
+                sourceGridView.setVerticalSpacing(20);
+                sourceGridView.setColumnWidth(100);
+
+                destinationGridView.setHorizontalSpacing(20);
+                destinationGridView.setVerticalSpacing(20);
+                destinationGridView.setColumnWidth(100);
+            }
+
+            // Get the image name to move
+            String imageName = "a" + pawIndex + "_h" + 4 + "_p" + pawIndex;
+
+            // Check if the source adapter contains the image name
+            if (sourceAdapter != null && sourceAdapter.getImageNames().contains(imageName)) {
+                // Remove the image from the source adapter
+                sourceAdapter.removeImage(imageName);
+                // Add the image to the destination adapter
+                destinationAdapter.addImageResource(getResources().getIdentifier(imageName, "drawable", getPackageName()));
+
+                // Notify the adapters of the data changes
+                sourceAdapter.notifyDataSetChanged();
+                destinationAdapter.notifyDataSetChanged();
+
+                currentPosition4[pawIndex - 1] = next_arr;
                 A1Btn.setEnabled(false);
                 A2Btn.setEnabled(false);
                 A3Btn.setEnabled(false);
