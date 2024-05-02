@@ -49,3 +49,21 @@ Logic :
                           Log.d("RedPh4", imageName);
                       }
                       // After setting adapter, retrieve the image names - Red(ph4) - code end here
+2. code
+----------
+//        This is below code for check all the house images are add in last gridView then declare winner - code start here
+//        GridView gridViewTest = findViewById(R.id.gridView13); // Replace your_gridview_id with the actual ID of your GridView
+//        ImageAdapter imageAdapterTest = (ImageAdapter) gridViewTest.getAdapter();
+//
+//// Check if the adapter is not null
+//        if (imageAdapterTest != null) {
+//            List<String> imageNames = imageAdapterTest.getImageNames();
+//
+//            // Now you have a list of image names
+//            for (String imageName : imageNames) {
+//                Log.d("Image Name", imageName);
+//            }
+//        } else {
+//            Log.e("GridView Error", "Adapter is null");
+//        }
+        //        This is below code for check all the house images are add in last gridView then declare winner - code end here
