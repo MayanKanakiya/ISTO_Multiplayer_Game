@@ -1,8 +1,10 @@
 package com.example.istomultiplayer;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -403,7 +405,6 @@ public class MainActivity extends AppCompatActivity {
                         nextPosition3[0] += frontImageCount;
                         pawnMove(currentPlayerIndexHouse, 1, nextPosition3[0], currentPosition3[0]);
                     } else if (currentPlayerIndexHouse == 0) {
-                        Log.d("A1Red", "Clicked");
                         nextPosition4[0] += frontImageCount;
                         pawnMove(currentPlayerIndexHouse, 1, nextPosition4[0], currentPosition4[0]);
                     }
@@ -591,8 +592,72 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         frontImageCount = 0;
+        checkForWin();
     }
 
+    private void checkForWin() {
+        GridView gridView13 = findViewById(R.id.gridView13);
+        ImageAdapter adapter = (ImageAdapter) gridView13.getAdapter();
+
+        if (adapter == null || adapter.getImageNames().size() < 4) {
+            return;
+        }
+
+        // Check if gridView13 contains four specific pawns for any house
+        boolean hasAllPawnsHouse1 = adapter.getImageNames().contains("a1_h1_p1") &&
+                adapter.getImageNames().contains("a2_h1_p2") &&
+                adapter.getImageNames().contains("a3_h1_p3") &&
+                adapter.getImageNames().contains("a4_h1_p4");
+
+        boolean hasAllPawnsHouse2 = adapter.getImageNames().contains("a1_h2_p1") &&
+                adapter.getImageNames().contains("a2_h2_p2") &&
+                adapter.getImageNames().contains("a3_h2_p3") &&
+                adapter.getImageNames().contains("a4_h2_p4");
+
+        boolean hasAllPawnsHouse3 = adapter.getImageNames().contains("a1_h3_p1") &&
+                adapter.getImageNames().contains("a2_h3_p2") &&
+                adapter.getImageNames().contains("a3_h3_p3") &&
+                adapter.getImageNames().contains("a4_h3_p4");
+
+        boolean hasAllPawnsHouse4 = adapter.getImageNames().contains("a1_h4_p1") &&
+                adapter.getImageNames().contains("a2_h4_p2") &&
+                adapter.getImageNames().contains("a3_h4_p3") &&
+                adapter.getImageNames().contains("a4_h4_p4");
+
+        Intent intent = getIntent();
+        if (hasAllPawnsHouse1) {
+            String receivedPlayer1 = intent.getStringExtra("Player1");
+            showAlertDialog(receivedPlayer1);
+        } else if (hasAllPawnsHouse2) {
+            String receivedPlayer2 = intent.getStringExtra("Player2");
+            showAlertDialog(receivedPlayer2);
+        } else if (hasAllPawnsHouse3) {
+            String receivedPlayer3 = intent.getStringExtra("Player3");
+            showAlertDialog(receivedPlayer3);
+        } else if (hasAllPawnsHouse4) {
+            String receivedPlayer4 = intent.getStringExtra("Player4");
+            showAlertDialog(receivedPlayer4);
+        }
+    }
+
+    // Method to show the alert dialog indicating the winner
+    private void showAlertDialog(String uname) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Game Over");
+        builder.setMessage("Congratulations, " + uname + " won the game!!");
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Intent intent = new Intent(MainActivity.this, UnameAdd.class);
+                startActivity(intent);
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
     // Helper method to update GridView layout
     private void updateGridViewLayout(GridView gridView) {
         // Get the number of images in the grid view
