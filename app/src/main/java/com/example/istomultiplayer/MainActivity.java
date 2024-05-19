@@ -493,7 +493,6 @@ public class MainActivity extends AppCompatActivity {
     //This below method for moving paws in one gridView to another - code start here
     private void pawnMove(int currentPlayerIndexHouse, int pawIndex, int next_arr, int curr_arr) {
         try {
-
             GridView sourceGridView = null;
             GridView destinationGridView = null;
             if (currentPlayerIndexHouse == 1) {
@@ -509,7 +508,7 @@ public class MainActivity extends AppCompatActivity {
                 sourceGridView = ph4arr[curr_arr];
                 destinationGridView = ph4arr[next_arr];
             }
-
+            killPaw(currentPlayerIndexHouse, destinationGridView);
             // Get the adapter of the source GridView
             ImageAdapter sourceAdapter = (ImageAdapter) sourceGridView.getAdapter();
             // Get the adapter of the destination GridView
@@ -613,6 +612,75 @@ public class MainActivity extends AppCompatActivity {
             gridView.setVerticalSpacing(80);
             gridView.setColumnWidth(100);
         }
+    }
+
+    // Method to remove the first pawn from another house in the given grid view
+    private void killPaw(int currentPlayerIndexHouse, GridView currentGridView) {
+        try {
+            // Get the adapter of the current GridView
+            ImageAdapter currentAdapter = (ImageAdapter) currentGridView.getAdapter();
+
+            // Iterate through the items in the current GridView to find the first pawn belonging to another house
+            for (int i = 0; i < currentAdapter.getCount(); i++) {
+                String pawnName = currentAdapter.getImageNames().get(i);
+
+                // Check if the pawn belongs to another house
+                if (!pawnName.contains("_h" + (currentPlayerIndexHouse == 0 ? 4 : currentPlayerIndexHouse) + "_")) {
+                    // Remove the pawn from the current adapter
+                    currentAdapter.removeImage(pawnName);
+
+                    // Determine which house the pawn belongs to
+                    int houseIndex = Integer.parseInt(pawnName.split("_h")[1].split("_")[0]);
+
+                    // Get the home GridView for this house
+                    GridView homeGridView = null;
+                    if (houseIndex == 1) {
+                        homeGridView = ph1arr[0];
+                        resetPawnPosition(currentPosition1, nextPosition1, pawnName);
+                    } else if (houseIndex == 2) {
+                        homeGridView = ph2arr[0];
+                        resetPawnPosition(currentPosition2, nextPosition2, pawnName);
+                    } else if (houseIndex == 3) {
+                        homeGridView = ph3arr[0];
+                        resetPawnPosition(currentPosition3, nextPosition3, pawnName);
+                    } else if (houseIndex == 4) {
+                        homeGridView = ph4arr[0];
+                        resetPawnPosition(currentPosition4, nextPosition4, pawnName);
+                    }
+
+                    ImageAdapter homeAdapter = (ImageAdapter) homeGridView.getAdapter();
+
+                    // Initialize the home adapter if it's null
+                    if (homeAdapter == null) {
+                        homeAdapter = new ImageAdapter(this);
+                        homeGridView.setAdapter(homeAdapter);
+                    }
+
+                    // Add the pawn to the home adapter
+                    homeAdapter.addImageResource(getResources().getIdentifier(pawnName, "drawable", getPackageName()));
+
+                    // Notify the adapters of the data changes
+                    homeAdapter.notifyDataSetChanged();
+                    break; // Exit after removing the first pawn belonging to another house
+                }
+            }
+
+            // Notify the current adapter of the data changes
+            currentAdapter.notifyDataSetChanged();
+
+            // Update the layout of the current GridView
+            updateGridViewLayout(currentGridView);
+        } catch (Exception e) {
+            Log.e("KillPawError", "Error in killPaw: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    // Helper method to reset the position of the pawn
+    private void resetPawnPosition(int[] currentPosition, int[] nextPosition, String pawnName) {
+        int pawIndex = Integer.parseInt(pawnName.split("_p")[1]) - 1;
+        currentPosition[pawIndex] = 0; // Resetting the current position to home (index 0)
+        nextPosition[pawIndex] = 0; // Resetting the next position to home (index 0)
     }
 
     //This below method for moving paws in one gridView to another - code end here
