@@ -21,6 +21,7 @@ public class UnameAdd extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_uname_add);
         Player1EditText = findViewById(R.id.Player1EditText);
         Player2EditText = findViewById(R.id.Player2EditText);
