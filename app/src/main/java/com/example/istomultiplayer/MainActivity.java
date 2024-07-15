@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     private int[] currentPosition4 = new int[4];
     private int[] nextPosition4 = new int[4];
-
+    private MediaPlayer gameMusic;
+    private MediaPlayer pawn_kill;
 
     GridView[] ph1arr = new GridView[25];
     GridView[] ph2arr = new GridView[25];
@@ -54,11 +56,20 @@ public class MainActivity extends AppCompatActivity {
     int numPlayers = 4;
     int currentPlayerIndexHouse = 0;
 
-    @SuppressLint("CutPasteId")
+    @SuppressLint({"CutPasteId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Initialize MediaPlayer with the raw resource file
+        gameMusic = MediaPlayer.create(this, R.raw.game_music);
+
+        // Enable looping (play audio in loop)
+        gameMusic.setLooping(true);
+
+        // Start playing the audio
+        gameMusic.start();
 
         //Random image shuffling
         allImageResRandom = new ArrayList<>();
@@ -218,9 +229,6 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.gridView12),
                 findViewById(R.id.gridView13)
         };
-
-//        This below code for arrays for player house(path) and currentPosition1 and nextPosition1 of player - start end here
-
         try {
 //          First Yellow(ph1) gridView code for add images into it - code start here
             GridView gridView = findViewById(R.id.gridView23);
@@ -658,6 +666,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
     // Helper method to update GridView layout
     private void updateGridViewLayout(GridView gridView) {
         // Get the number of images in the grid view
@@ -679,57 +688,72 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private int getImageCount(GridView gridView) {
+        ImageAdapter adapter = (ImageAdapter) gridView.getAdapter();
+        if (adapter != null) {
+            return adapter.getCount();
+        }
+        return 0;
+    }
+
     // Method to remove the first pawn from another house in the given grid view
     private void killPaw(int currentPlayerIndexHouse, GridView currentGridView) {
         try {
             // Get the adapter of the current GridView
             ImageAdapter currentAdapter = (ImageAdapter) currentGridView.getAdapter();
-
             // Iterate through the items in the current GridView to find the first pawn belonging to another house
             for (int i = 0; i < currentAdapter.getCount(); i++) {
                 String pawnName = currentAdapter.getImageNames().get(i);
-
                 // Check if the pawn belongs to another house
                 if (!pawnName.contains("_h" + (currentPlayerIndexHouse == 0 ? 4 : currentPlayerIndexHouse) + "_")) {
-                    // Remove the pawn from the current adapter
-                    currentAdapter.removeImage(pawnName);
+                    // Get the number of images in the GridView
+                    int imageCount = getImageCount(currentGridView);
 
-                    // Determine which house the pawn belongs to
-                    int houseIndex = Integer.parseInt(pawnName.split("_h")[1].split("_")[0]);
+                    // Check if there are more than two pawns belonging to other houses
+                    if (imageCount > 2) {
+                        Log.d("Music Kill", "Pawn kill music is stop when gridView contain more then two pawn...");
+                    } else {
+                        // Initialize MediaPlayer with the raw resource file
+                        pawn_kill = MediaPlayer.create(this, R.raw.pawn_kill);
+                        pawn_kill.setLooping(false);
+                        // Start playing the audio
+                        pawn_kill.start();// Remove the pawn from the current adapter
+                        currentAdapter.removeImage(pawnName);
+                        int houseIndex = Integer.parseInt(pawnName.split("_h")[1].split("_")[0]);
+                        // Determine which house the pawn belongs to
+                        // Get the home GridView for this house
+                        GridView homeGridView = null;
+                        if (houseIndex == 1) {
+                            homeGridView = ph1arr[0];
+                            resetPawnPosition(currentPosition1, nextPosition1, pawnName);
+                        } else if (houseIndex == 2) {
+                            homeGridView = ph2arr[0];
+                            resetPawnPosition(currentPosition2, nextPosition2, pawnName);
+                        } else if (houseIndex == 3) {
+                            homeGridView = ph3arr[0];
+                            resetPawnPosition(currentPosition3, nextPosition3, pawnName);
+                        } else if (houseIndex == 4) {
+                            homeGridView = ph4arr[0];
+                            resetPawnPosition(currentPosition4, nextPosition4, pawnName);
+                        }
 
-                    // Get the home GridView for this house
-                    GridView homeGridView = null;
-                    if (houseIndex == 1) {
-                        homeGridView = ph1arr[0];
-                        resetPawnPosition(currentPosition1, nextPosition1, pawnName);
-                    } else if (houseIndex == 2) {
-                        homeGridView = ph2arr[0];
-                        resetPawnPosition(currentPosition2, nextPosition2, pawnName);
-                    } else if (houseIndex == 3) {
-                        homeGridView = ph3arr[0];
-                        resetPawnPosition(currentPosition3, nextPosition3, pawnName);
-                    } else if (houseIndex == 4) {
-                        homeGridView = ph4arr[0];
-                        resetPawnPosition(currentPosition4, nextPosition4, pawnName);
+                        ImageAdapter homeAdapter = (ImageAdapter) homeGridView.getAdapter();
+
+                        // Initialize the home adapter if it's null
+                        if (homeAdapter == null) {
+                            homeAdapter = new ImageAdapter(this);
+                            homeGridView.setAdapter(homeAdapter);
+                        }
+
+                        // Add the pawn to the home adapter
+                        homeAdapter.addImageResource(getResources().getIdentifier(pawnName, "drawable", getPackageName()));
+
+                        // Notify the adapters of the data changes
+                        homeAdapter.notifyDataSetChanged();
+                        break; // Exit after removing the first pawn belonging to another house
                     }
-
-                    ImageAdapter homeAdapter = (ImageAdapter) homeGridView.getAdapter();
-
-                    // Initialize the home adapter if it's null
-                    if (homeAdapter == null) {
-                        homeAdapter = new ImageAdapter(this);
-                        homeGridView.setAdapter(homeAdapter);
-                    }
-
-                    // Add the pawn to the home adapter
-                    homeAdapter.addImageResource(getResources().getIdentifier(pawnName, "drawable", getPackageName()));
-
-                    // Notify the adapters of the data changes
-                    homeAdapter.notifyDataSetChanged();
-                    break; // Exit after removing the first pawn belonging to another house
                 }
             }
-
             // Notify the current adapter of the data changes
             currentAdapter.notifyDataSetChanged();
 
@@ -775,6 +799,22 @@ public class MainActivity extends AppCompatActivity {
             if (isFront(imageRes)) {
                 frontImageCount++;
             }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (gameMusic != null) {
+            gameMusic.stop();
+            gameMusic.release();
+            gameMusic = null;
+        }
+        super.onDestroy();
+        if (pawn_kill != null) {
+            pawn_kill.stop();
+            pawn_kill.release();
+            pawn_kill = null;
         }
     }
 }

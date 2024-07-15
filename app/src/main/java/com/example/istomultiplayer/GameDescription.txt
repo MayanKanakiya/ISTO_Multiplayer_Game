@@ -67,3 +67,12 @@ Logic :
 //            Log.e("GridView Error", "Adapter is null");
 //        }
         //        This is below code for check all the house images are add in last gridView then declare winner - code end here
+
+Future plan for this game
+--------------------------------------
+1. Background, winner and kill paws music
+2. login and signup
+3. player photograph
+4. slider bar (profile details, logout btn and game history)
+5. history (game photo, winner , date and time , game duration) and in listView
+6.
